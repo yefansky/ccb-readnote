@@ -433,7 +433,7 @@ flowchart TB
     G --> N
     H --> N
     I --> N
-    N --> O[返回 Tools[]]
+    N --> O["返回 Tools[]"]
 ```
 
 #### 核心文件
@@ -1104,8 +1104,8 @@ graph TB
     AppState --> TaskState
     AppState --> MCPState
 
-    useAppState ..> AppStateStore
-    useSetAppState ..> AppStateStore
+    useAppState --> AppStateStore
+    useSetAppState --> AppStateStore
 ```
 
 #### 核心文件
@@ -1343,10 +1343,18 @@ stateDiagram-v2
     Failed --> [*]
     Killed --> [*]
 
-    note right of Pending: 任务已创建<br/>等待执行
-    note right of Running: 任务正在执行<br/>可包含子任务
-    note right of Completed: 任务成功完成
-    note right of Failed: 执行过程中出错
+    note right of Pending
+        任务已创建，等待执行
+    end note
+    note right of Running
+        任务正在执行，可包含子任务
+    end note
+    note right of Completed
+        任务成功完成
+    end note
+    note right of Failed
+        执行过程中出错
+    end note
 ```
 
 #### 核心文件
@@ -1488,7 +1496,7 @@ graph TB
         WithRetry["withRetry.ts<br/>重试逻辑"]
     end
 
-    subgraph "Bootstrap"
+    subgraph "Bootstrap 启动流程"
         Bootstrap["bootstrap.ts<br/>启动数据获取"]
         Config["config.ts<br/>配置获取"]
     end
@@ -1915,12 +1923,12 @@ stateDiagram-v2
     note right of Pending
         任务已创建
         等待执行调度
-    end
+    end note
 
     note right of Running
         任务正在执行
         可能包含子任务
-    end
+    end note
 ```
 
 ---
@@ -2265,7 +2273,7 @@ flowchart TB
 
     subgraph "解决方案：延迟导入"
         D[模块D] --> E{首次调用}
-        E -->|需要时| F[require() 动态导入]
+        E -->|需要时| F["require() 动态导入"]
         F --> D
     end
 
